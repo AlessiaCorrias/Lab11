@@ -1,5 +1,6 @@
 package it.polito.tdp.rivers.model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +9,8 @@ public class River {
 	private String name;
 	private double flowAvg;
 	private List<Flow> flows;
+	private LocalDate inizio;
+	private LocalDate fine;
 	
 	public River(int id) {
 		this.id = id;
@@ -35,6 +38,13 @@ public class River {
 	}
 	
 	public double getFlowAvg() {
+		double tot = 0.0;
+		for(Flow f: flows) {
+			tot+=f.getFlow();
+		}
+		
+		flowAvg = tot/flows.size();
+		
 		return flowAvg;
 	}
 
@@ -78,4 +88,22 @@ public class River {
 			return false;
 		return true;
 	}
+
+	public LocalDate getInizio() {
+		return inizio;
+	}
+
+	public void setInizio(LocalDate inizio) {
+		this.inizio = inizio;
+	}
+
+	public LocalDate getFine() {
+		return fine;
+	}
+
+	public void setFine(LocalDate fine) {
+		this.fine = fine;
+	}
+	
+	
 }
